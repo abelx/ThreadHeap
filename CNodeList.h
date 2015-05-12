@@ -10,7 +10,7 @@ class CNodeList
 public:
 	//CNodeList();
 	//~CNodeList();
-	T* Delete(T*);
+	T* Delete(T* pDeletePtr = nullptr);
 	//(pre, the)
 	void Insert(T*, T*);
 	bool IsNull();

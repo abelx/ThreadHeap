@@ -10,7 +10,7 @@ public:
 	CThreadHeap();
 	virtual ~CThreadHeap();
 
-	PVOID Alloc(size_t);
+	CListNode* Alloc(size_t);
 	void Free(CListNode*);
 
 //private:

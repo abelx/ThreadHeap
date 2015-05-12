@@ -7,8 +7,6 @@
 
 void CUsedMemoryDepositor::Mount(CListNode* pMnt)
 {
-	__Clear();
-	pMnt->IncRC();
 	m_DepositList[0].Insert(nullptr,pMnt);
 }
 
@@ -17,10 +15,53 @@ void CUsedMemoryDepositor::UMount(CListNode* pUmnt)
 	m_DepositList[0].Delete(pUmnt);
 }
 
-void CUsedMemoryDepositor::__Clear()
+void CUsedMemoryDepositor::__clearList(int i)
 {
-	if(!m_bClearFlag)
+	if(i<0 || i>m_iListNumber)
 		return;
+
+	CListNode *pclnTmp;
+	while(!m_DepositList[i].IsNull())
+	{
+		pclnTmp = m_DepositList[i].Delete(); //É¾³ýÍ·½Úµã
+		if(pclnTmp->GetRC() == 0)
+			m_pHeap->Free(pclnTmp);
+		else
+			m_DepositList[(i+1)%m_iListNumber].Insert(nullptr, pclnTmp);
+	}
+
+}
+
+void CUsedMemoryDepositor::Clear()
+{
+	if(m_iMountTimes==0)
+	{
+		m_iMountTimes++;
+		return;
+	}
+
+	int thresh = _CLEAR_THRESHOLD;
+	int i;
+	for(i=0; i<m_iListNumber; i++)
+	{
+		if(m_iMountTimes % thresh != 0)
+		{
+			__clearList(i-1);
+			break;
+		}
+		thresh *= _CLEAR_THRESHOLD;
+	}
+	if(i == m_iListNumber)
+	{
+		__clearList(i-1);
+		m_iMountTimes = 0;
+	}
+
+	m_iMountTimes++;
+}
+/*
+void CUsedMemoryDepositor::Clear()
+{
 	if(m_iMountTimes==0)
 	{
 		m_iMountTimes++;
@@ -75,3 +116,4 @@ void CUsedMemoryDepositor::__Clear()
 	m_iMountTimes = (m_iMountTimes+1)%(m_CLEAR_THRESHOLD_MAX + 1);
 }
 
+*/

@@ -12,7 +12,7 @@ CThreadHeap::CThreadHeap()
 {
 	
 	CListNode *pIniNode;
-	m_Pool = new CMemoryPool(&pIniNode);
+	m_Pool = new CMemoryPool(&pIniNode, 1024*16);
 	
 	if(pIniNode != nullptr)
 	{
@@ -27,7 +27,7 @@ CThreadHeap::~CThreadHeap()
 	delete m_Keeper;
 }
 
-PVOID CThreadHeap::Alloc(size_t sz)
+CListNode* CThreadHeap::Alloc(size_t sz)
 {
 	if(sz <= 0)
 		return nullptr;
@@ -47,7 +47,7 @@ PVOID CThreadHeap::Alloc(size_t sz)
 
 	//设置内存块所属线程handle
 	((SMemoryNode*)ret)->m_hThread = (int)GetCurrentThreadId();
-	return ret->GetPointer();
+	return ret;
 }
 
 void CThreadHeap::Free(CListNode *pln)

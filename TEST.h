@@ -1,1 +1,2 @@
 void TEST_HEAP();
+void TEST_HEAPWITHDEPOSITOR();

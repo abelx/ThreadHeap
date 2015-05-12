@@ -44,6 +44,7 @@ DWORD WINAPI WorkThreadProc(PVOID pParam)
 int main()
 {
 	TEST_HEAP();
+	TEST_HEAPWITHDEPOSITOR();
 	/*
 	tlsIndex = TlsAlloc();
 	InitHeap();
