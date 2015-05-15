@@ -35,3 +35,10 @@ bool CFreeNodeTree::Empty()
 {
 	return m_Tree.empty();
 }
+
+int CFreeNodeTree::GetMaxSize()
+{
+	multimap<size_t, int>::const_reverse_iterator itor = m_Tree.rbegin();
+	return itor->first;
+}
+

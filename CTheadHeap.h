@@ -1,6 +1,5 @@
 #include <Windows.h>							
 class CFreeMemoryKeeper;
-class CUsedMemoryDepositor;
 class CMemoryPool;
 class CListNode;
 
@@ -17,7 +16,7 @@ public:
 	CFreeMemoryKeeper* m_Keeper;
 	CMemoryPool* m_Pool;
 };
-
+/*
 extern DWORD tlsIndex;
 
 BOOL InitHeap();
@@ -27,3 +26,4 @@ void MyTrueFree(PVOID ptr);
 void DelHeap();
 void MyDoFree(PVOID ptr);
 void MyMessageFree(PVOID ptr);
+*/

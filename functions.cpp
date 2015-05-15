@@ -11,3 +11,15 @@ int g_Align(int a, int b)
 {
 	return g_DivUp(a, b) * b;
 }
+
+DWORD64 GetTimeTick()
+{
+	DWORD64 tmp = 0;
+	__asm
+	{
+		RDTSC
+		mov dword ptr tmp, eax
+		mov dword ptr tmp[4], edx 
+	}
+	return tmp;
+}

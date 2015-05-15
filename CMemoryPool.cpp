@@ -40,6 +40,8 @@ void CMemoryPool::CombineNode(CMemoryNode* pStart, CMemoryNode* pEnd)
 	ulNewSize += pEnd->GetSize() + MEMORY_NODE_SIZE;
 	pStart->SetNextPtr(pEnd->GetNextPtr());
 	pStart->SetSize(ulNewSize);
+	if(pEnd->GetNextPtr()!=nullptr)
+		pEnd->GetNextPtr()->SetPreviousPtr(pStart);
 }
 
 //函数内默认sz一定是unit的整数倍

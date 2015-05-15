@@ -9,6 +9,7 @@ public:
 	CListNode* Delete(size_t);
 	void Delete(CListNode*);
 	bool Empty();
+	int GetMaxSize();
 private:
 	multimap<size_t, int> m_Tree;
 };

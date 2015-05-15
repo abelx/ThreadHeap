@@ -78,8 +78,7 @@ void CThreadHeap::Free(CListNode *pln)
 
 
 
-DWORD tlsIndex;
-
+/*
 BOOL InitHeap()
 {
 	CThreadHeap *tmp = new CThreadHeap;
@@ -137,4 +136,4 @@ void MyMessageFree(PVOID ptr)
 			PostThreadMessage(iThreadId, MSG_MY_FREE, (WPARAM)del, 0); 
 		}
 	}
-}
+}*/

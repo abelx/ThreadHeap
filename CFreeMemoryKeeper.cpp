@@ -139,7 +139,7 @@ int CFreeMemoryKeeper::__getListKeyByMap(size_t sz)
 		i = m_iTreeNumber - 1;
 	for(; i<m_iTreeNumber; i++)
 	{
-		if(!(m_aFreeTree[i].Empty()))
+		if(!(m_aFreeTree[i].Empty()) && m_aFreeTree[i].GetMaxSize() >= sz)
 			return i+m_iListNumber;
 	}
 

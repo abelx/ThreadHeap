@@ -1,6 +1,6 @@
 #include <Windows.h>
 
-namespace MessageFreeHeap
+namespace DepositFreeHeap
 {
 	extern DWORD tlsIndex;
 	bool InitHeap();
