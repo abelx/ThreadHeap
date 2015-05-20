@@ -12,6 +12,7 @@ public:
 	void Mount(CListNode*);
 	void UMount(CListNode*);
 	CListNode* UMount(size_t);
+	void check_comform();
 //private:
 public:
 	int __getListKeyByMap(size_t);
@@ -21,5 +22,6 @@ public:
 	CFreeNodeTree* m_aFreeTree;
 	int m_iListNumber;
 	int m_iTreeNumber;
+	int m_iCheckBits;
 	CThreadHeap* m_pHeap;
 };

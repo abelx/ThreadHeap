@@ -1,7 +1,9 @@
 #ifndef SMemoryNode_H
 #define SMemoryNode_H
 #include "functions.h"
-#include "consts.h"
+
+
+
 struct SMemoryNode
 {
 	SMemoryNode(size_t sz, int rc,
@@ -23,5 +25,6 @@ struct SMemoryNode
 	int m_hThread;
 };
 
+static const int HEAP_MEMORY_UNIT = 8;
 static const int MEMORY_NODE_SIZE = g_Align(sizeof(SMemoryNode), HEAP_MEMORY_UNIT);
 #endif

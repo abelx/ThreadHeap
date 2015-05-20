@@ -28,18 +28,14 @@ void TEST_HEAP()
 	TheHeap.m_Pool->print_pool();
 	TheHeap.Free(test);
 	TheHeap.m_Pool->print_pool();
-
-	for(int i=1; i<10; i++)
+	int iSz;
+	for(int i=0; i<20; i++)
 	{
-		size_t sz = i*8;//rand() % 256;
-		test = TheHeap.Alloc(sz);
+		iSz = rand() % 512;
+		test = TheHeap.Alloc(iSz);
+		TheHeap.Free(test);
+		cout << "alloc" << iSz << ":";
 		TheHeap.m_Pool->print_pool();
-		if(rand()%2 == 0 && test != NULL)
-		{
-			TheHeap.Free(test);
-			TheHeap.m_Pool->print_pool();
-			
-		}
 	}
 	TheHeap.Free(p1);
 	TheHeap.m_Pool->print_pool();
@@ -185,7 +181,7 @@ void TEST_THREAD_DEPOSITHEAP()
 	initTime = GetTimeTick() - initTime;
 	HANDLE hThread;
 	DWORD iThreadId;
-	hThread = (HANDLE) _beginthreadex(NULL, 0, (unsigned (__stdcall *)(void *))DepositWorkThreadProc, (void *)&freeTime, 0, (unsigned *)&iThreadId);
+	//hThread = (HANDLE) _beginthreadex(NULL, 0, (unsigned (__stdcall *)(void *))DepositWorkThreadProc, (void *)&freeTime, 0, (unsigned *)&iThreadId);
 	CThreadHeap *tmp = ((CThreadHeapWithDepositor *)TlsGetValue(tlsIndex))->m_pThreadHeap;
 	cout << "init:";
 	tmp->m_Pool->print_pool();
@@ -201,7 +197,8 @@ void TEST_THREAD_DEPOSITHEAP()
 		allocTime = GetTimeTick() - allocTime;
 		cout << "alloc" << iSz << ":";
 		tmp->m_Pool->print_pool();
-		PostThreadMessage(iThreadId, MSG_MY_ALLOC, (WPARAM)test, 0);
+		MyFree(test);
+		//PostThreadMessage(iThreadId, MSG_MY_ALLOC, (WPARAM)test, 0);
 	}
 	runTime = GetTimeTick() - runTime;
 	cout << "------------------END------------------" << endl;

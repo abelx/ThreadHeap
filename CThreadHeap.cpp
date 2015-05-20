@@ -3,7 +3,6 @@
 #include "CUsedMemoryDepositor.h"
 #include "CMemoryPool.h"
 #include "functions.h"
-#include "consts.h"
 #include "CMemoryNode.h"
 #include "CListNode.h"
 #include <Windows.h>

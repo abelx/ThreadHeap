@@ -6,7 +6,6 @@
 #include <malloc.h>
 #include "CTheadHeap.h"
 #include "functions.h"
-#include "consts.h"
 #include <iostream>
 using namespace std;
 
