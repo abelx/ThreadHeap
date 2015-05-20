@@ -1,6 +1,7 @@
 #include "CListNode.h"
 #include <Windows.h>
 
+
 CListNode* CListNode::GetNextPtr()
 {
 	return (CListNode*)(m_sListNode.m_pNextNodeInList);
